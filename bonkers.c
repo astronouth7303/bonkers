@@ -302,7 +302,7 @@ static int read_state_1d34_0020(device_config *device) {
     ret = control_transfer_out_report(device, 0x0200, 0x0000, rep1, 8, 200);
 
     // We expect IO errors from this call
-    if (ret != 8 && ret != LIBUSB_ERROR_IO) {
+    if (ret != 8 && ret != LIBUSB_ERROR_IO && ret != LIBUSB_ERROR_OVERFLOW) {
         return BONKERS_ERROR;
     }
 
@@ -317,7 +317,7 @@ static int read_state_1d34_0020(device_config *device) {
     ret = control_transfer_out_report(device, 0x0200, 0x0000, rep2, 8, 200);
 
     // Again, we expect IO errors
-    if (ret != 8 && ret != LIBUSB_ERROR_IO) {
+    if (ret != 8 && ret != LIBUSB_ERROR_IO && ret != LIBUSB_ERROR_OVERFLOW) {
         return BONKERS_ERROR;
     }
 
